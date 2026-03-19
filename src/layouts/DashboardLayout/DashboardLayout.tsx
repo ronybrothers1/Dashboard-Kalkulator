@@ -37,10 +37,10 @@ export const DashboardLayout: React.FC = () => {
         </div>
 
         <nav className={styles['topbar-nav']} aria-label="Navigasi utama">
-          <a href="https://www.rony.biz.id/profil" className={`${styles['nav-item']} ${styles.active}`} rel="noopener noreferrer">
+          <a href="https://www.rony.biz.id/profil" target="_blank" className={`${styles['nav-item']} ${styles.active}`} rel="noopener noreferrer">
             <Icon name="profile" /> Profil
           </a>
-          <a href="https://www.rony.biz.id/tools" className={styles['nav-item']} rel="noopener noreferrer">
+          <a href="https://www.rony.biz.id/tools" target="_blank" className={styles['nav-item']} rel="noopener noreferrer">
             <Icon name="tools" /> Tool
           </a>
         </nav>
@@ -65,12 +65,12 @@ export const DashboardLayout: React.FC = () => {
         <aside className={styles.sidebar} aria-label="Navigasi samping">
           <div className={styles['sidebar-section-label']}>Navigasi</div>
 
-          <a href="https://www.rony.biz.id/profil" className={`${styles['sidebar-link']} ${styles.active}`} rel="noopener noreferrer">
+          <a href="https://www.rony.biz.id/profil" target="_blank" className={`${styles['sidebar-link']} ${styles.active}`} rel="noopener noreferrer">
             <Icon name="profile" /> Profil
             <span className={styles['sidebar-badge']} aria-label="Node 01">01</span>
           </a>
 
-          <a href="https://www.rony.biz.id/tools" className={styles['sidebar-link']} rel="noopener noreferrer">
+          <a href="https://www.rony.biz.id/tools" target="_blank" className={styles['sidebar-link']} rel="noopener noreferrer">
             <Icon name="tools" /> Tool
             <span className={styles['sidebar-badge']} aria-label="Node 02">02</span>
           </a>
@@ -124,10 +124,10 @@ export const DashboardLayout: React.FC = () => {
         <nav className={styles.drawer} onClick={(e) => e.stopPropagation()}>
           <button className={styles['drawer-close']} onClick={toggleDrawer} aria-label="Tutup menu">×</button>
           <div className={styles['drawer-section']}>Menu</div>
-          <a href="https://www.rony.biz.id/profil" className={styles['drawer-link']} rel="noopener noreferrer">
+          <a href="https://www.rony.biz.id/profil" target="_blank" className={styles['drawer-link']} rel="noopener noreferrer">
             Profil <Icon name="arrow-right" />
           </a>
-          <a href="https://www.rony.biz.id/tools" className={styles['drawer-link']} rel="noopener noreferrer">
+          <a href="https://www.rony.biz.id/tools" target="_blank" className={styles['drawer-link']} rel="noopener noreferrer">
             Tool <Icon name="arrow-right" />
           </a>
         </nav>

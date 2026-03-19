@@ -113,7 +113,7 @@ export const Dashboard: React.FC = () => {
             style={{ opacity: showNav ? 1 : 0, pointerEvents: showNav ? 'auto' : 'none', transition: 'opacity 0.5s ease' }} 
             aria-label="Navigasi portal"
           >
-            <a href="https://www.rony.biz.id/profil" className={styles['nav-card']} data-color="blue" aria-label="Akses halaman Profil" rel="noopener noreferrer">
+            <a href="https://www.rony.biz.id/profil" target="_blank" className={styles['nav-card']} data-color="blue" aria-label="Akses halaman Profil" rel="noopener noreferrer">
               <div className={styles['nav-card-icon']} aria-hidden="true">
                 <Icon name="profile" />
               </div>
@@ -127,7 +127,7 @@ export const Dashboard: React.FC = () => {
               </div>
             </a>
 
-            <a href="https://www.rony.biz.id/tools" className={styles['nav-card']} data-color="teal" aria-label="Akses halaman Tool" rel="noopener noreferrer">
+            <a href="https://www.rony.biz.id/tools" target="_blank" className={styles['nav-card']} data-color="teal" aria-label="Akses halaman Tool" rel="noopener noreferrer">
               <div className={styles['nav-card-icon']} aria-hidden="true">
                 <Icon name="tools" />
               </div>
