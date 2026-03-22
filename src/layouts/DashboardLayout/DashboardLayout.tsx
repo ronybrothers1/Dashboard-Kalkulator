@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Icon } from '../../components/Icon/Icon';
 import { Clock } from '../../components/Clock/Clock';
 import { Modal } from '../../components/Modal/Modal';
+import { AIAssistant } from '../../components/AIAssistant/AIAssistant';
 import styles from './DashboardLayout.module.css';
 
 export const DashboardLayout: React.FC = () => {
@@ -176,6 +177,9 @@ export const DashboardLayout: React.FC = () => {
           <dd className={`${styles['modal-field-val']} ${styles.mono}`}>Level 5</dd>
         </div>
       </Modal>
+
+      {/* AI ASSISTANT */}
+      <AIAssistant />
     </>
   );
 };

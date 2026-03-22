@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type IconName = 'profile' | 'tools' | 'dashboard' | 'blueprint' | 'shield' | 'lock' | 'cpu' | 'status' | 'arrow-right' | 'log' | 'diag' | 'close' | 'menu';
+export type IconName = 'profile' | 'tools' | 'dashboard' | 'blueprint' | 'shield' | 'lock' | 'cpu' | 'status' | 'arrow-right' | 'log' | 'diag' | 'close' | 'menu' | 'bolt' | 'send';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName;
@@ -8,6 +8,19 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 
 export const Icon: React.FC<IconProps> = ({ name, ...props }) => {
   switch (name) {
+    case 'bolt':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        </svg>
+      );
+    case 'send':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      );
     case 'profile':
       return (
         <svg viewBox="0 0 16 16" aria-hidden="true" {...props}>
