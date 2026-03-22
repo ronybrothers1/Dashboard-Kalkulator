@@ -5,8 +5,19 @@ import styles from './AIAssistant.module.css';
 import { motion, AnimatePresence } from 'motion/react';
 import Markdown from 'react-markdown';
 
-// Initialize the Gemini client
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+let aiClient: GoogleGenAI | null = null;
+
+const getAIClient = () => {
+  if (!aiClient) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("GEMINI_API_KEY is not set. AI features will be disabled.");
+      return null;
+    }
+    aiClient = new GoogleGenAI({ apiKey });
+  }
+  return aiClient;
+};
 
 export const AIAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,12 +31,15 @@ export const AIAssistant: React.FC = () => {
 
   useEffect(() => {
     if (!chatRef.current) {
-      chatRef.current = ai.chats.create({
-        model: 'gemini-3.1-flash-lite-preview',
-        config: {
-          systemInstruction: 'Anda adalah AI Assistant di portal Rony Brothers. Jawab dengan singkat, profesional, dan bernada teknis/cyber.',
-        }
-      });
+      const client = getAIClient();
+      if (client) {
+        chatRef.current = client.chats.create({
+          model: 'gemini-3.1-flash-lite-preview',
+          config: {
+            systemInstruction: 'Anda adalah AI Assistant di portal Rony Brothers. Jawab dengan singkat, profesional, dan bernada teknis/cyber.',
+          }
+        });
+      }
     }
   }, []);
 
@@ -48,6 +62,9 @@ export const AIAssistant: React.FC = () => {
     setMessages(prev => [...prev, { role: 'model', text: '' }]);
 
     try {
+      if (!chatRef.current) {
+        throw new Error("AI Client not initialized. Please check API Key.");
+      }
       const responseStream = await chatRef.current.sendMessageStream({ message: userText });
       for await (const chunk of responseStream) {
         setMessages(prev => {
