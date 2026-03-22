@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastProvider, useToast } from './contexts/ToastContext';
 import { DashboardLayout } from './layouts/DashboardLayout/DashboardLayout';
 import { Dashboard } from './pages/Dashboard/Dashboard';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const Splash = ({ onEnter }: { onEnter: () => void }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -88,10 +89,13 @@ const AppContent = () => {
   );
 };
 
+
 export default function App() {
   return (
-    <ToastProvider>
-      <AppContent />
-    </ToastProvider>
+    <ErrorBoundary>
+      <ToastProvider>
+        <AppContent />
+      </ToastProvider>
+    </ErrorBoundary>
   );
 }

@@ -52,7 +52,7 @@ export const AIAssistant: React.FC = () => {
       for await (const chunk of responseStream) {
         setMessages(prev => {
           const newMessages = [...prev];
-          newMessages[newMessages.length - 1].text += chunk.text;
+          newMessages[newMessages.length - 1].text += chunk.text || '';
           return newMessages;
         });
       }
@@ -81,6 +81,7 @@ export const AIAssistant: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
+            key="chat-panel"
             className={styles['chat-panel']}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

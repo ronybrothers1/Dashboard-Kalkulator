@@ -70,6 +70,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, label, chi
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          key="modal-overlay"
           className={styles['modal-overlay']}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
