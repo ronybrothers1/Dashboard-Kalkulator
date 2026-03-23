@@ -63,8 +63,8 @@
   right: 24px;
   width: calc(100vw - 48px);
   max-width: 380px;
-  height: calc(100dvh - 120px);
-  max-height: 500px;
+  height: 500px;
+  max-height: calc(100vh - 120px);
   will-change: auto;
   background: var(--surface-2);
   border: 1px solid var(--border-hover);
@@ -269,7 +269,8 @@
     bottom: 32px;
     right: 32px;
     max-width: 420px;
-    max-height: 650px;
+    height: 650px;
+    max-height: calc(100vh - 64px);
   }
   
   .chatTitle {
