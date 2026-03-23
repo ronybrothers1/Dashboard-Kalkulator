@@ -14,7 +14,6 @@
   box-shadow: 0 1px 0 rgba(45,142,255,0.04), 0 4px 24px rgba(0,0,0,0.2);
   /* FIX: isolasi layer agar tidak ikut tearing saat scroll */
   isolation: isolate;
-  transform: translateZ(0);
 }
 
 .topbar-brand { display: flex; align-items: center; gap: 10px; }
