@@ -58,26 +58,44 @@ body{
   min-height:100vh;
   min-height:100dvh;
   color:var(--text-primary);
+  /* FIX: overflow-x hidden instead of clip to prevent tearing artifacts */
   overflow-x:hidden;
 }
 
-/* ── AMBIENT BACKGROUND ── */
+/* ── AMBIENT BACKGROUND ── 
+   ROOT CAUSE FIX: 
+   - Hapus will-change:transform (menyebabkan compositing layer conflict dengan scroll)
+   - Hapus transform:translate3d (tidak perlu, justru bikin tearing saat scroll)
+   - Gunakan position:fixed tanpa will-change agar browser tidak buat separate GPU layer
+   - Tambah pointer-events:none dan contain:strict untuk isolasi paint
+*/
 .bg-canvas{
-  position:fixed;top:-20vh;left:-20vw;right:-20vw;bottom:-20vh;z-index:0;pointer-events:none;
-  contain:strict;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  z-index:0;
+  pointer-events:none;
+  /* FIX: Perluas sedikit tapi tanpa translate trick yang menyebabkan tearing */
   background:
     radial-gradient(ellipse 80% 60% at 20% 0%, rgba(45,142,255,0.07) 0%, transparent 55%),
     radial-gradient(ellipse 60% 50% at 80% 90%, rgba(0,212,180,0.05) 0%, transparent 55%),
     radial-gradient(ellipse 40% 40% at 50% 50%, rgba(45,142,255,0.03) 0%, transparent 60%),
     var(--blue-900);
-}
-.bg-grid{
-  position:fixed;top:-20vh;left:-20vw;right:-20vw;bottom:-20vh;z-index:0;pointer-events:none;opacity:0.25;
+  /* FIX: contain:strict mencegah repainting merembet ke elemen lain */
   contain:strict;
+}
+
+.bg-grid{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.25;
   background-image:
     linear-gradient(rgba(45,142,255,0.04) 1px,transparent 1px),
     linear-gradient(90deg,rgba(45,142,255,0.04) 1px,transparent 1px);
   background-size:40px 40px;
+  /* FIX: contain:strict dan tanpa will-change */
+  contain:strict;
 }
 
 /* ── ANIMATIONS ── */

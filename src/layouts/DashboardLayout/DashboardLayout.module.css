@@ -12,7 +12,8 @@
   justify-content: space-between;
   padding: 0 clamp(16px,3vw,32px);
   box-shadow: 0 1px 0 rgba(45,142,255,0.04), 0 4px 24px rgba(0,0,0,0.2);
-  contain: layout paint;
+  /* FIX: isolasi layer agar tidak ikut tearing saat scroll */
+  isolation: isolate;
 }
 
 .topbar-brand { display: flex; align-items: center; gap: 10px; }
@@ -100,6 +101,7 @@
   z-index: 1;
   display: flex;
   min-height: calc(100vh - 60px);
+  /* FIX: overflow-x hidden bukan clip - clip menyebabkan painting artifacts */
   overflow-x: hidden;
 }
 
@@ -117,7 +119,6 @@
   z-index: var(--z-sidebar);
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
-  contain: layout paint;
 }
 
 .sidebar::-webkit-scrollbar { width: 3px; }
@@ -197,6 +198,7 @@
   flex: 1;
   padding: clamp(24px,3vw,36px) clamp(16px,3vw,32px);
   min-height: calc(100vh - 60px);
+  /* FIX: overflow-x hidden bukan clip */
   overflow-x: hidden;
   min-width: 0;
 }
@@ -207,6 +209,7 @@
   inset: 0;
   z-index: var(--z-drawer);
   background: rgba(9,15,30,0.7);
+  /* FIX: backdrop-filter hanya di .drawer, bukan overlay - mengurangi compositing overhead */
 }
 
 .drawer {
@@ -215,14 +218,15 @@
   right: 0;
   bottom: 0;
   width: min(260px,82vw);
-  background: rgba(15,23,36,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--surface-2);
   border-left: 1px solid var(--border);
   padding: 60px 16px 32px;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
   overflow-y: auto;
+  /* FIX: backdrop-filter di sini saja, bukan overlay */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .drawer-overlay.open { display: block; }
@@ -276,7 +280,7 @@
 .drawer-link:hover { color: var(--accent-light); }
 .drawer-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: 0.4; flex-shrink: 0; }
 
-/* Modal specific overrides for layout */
+/* Modal field styles */
 .modal-btn-close {
   padding: 8px 22px;
   border-radius: 8px;
