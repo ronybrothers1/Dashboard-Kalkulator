@@ -33,27 +33,32 @@ interface DragPos {
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const FAB_SIZE = 56;
-const FAB_MARGIN = 24;
+
+function getMargin() {
+  return typeof window !== 'undefined' && window.innerWidth >= 768 ? 32 : 24;
+}
 
 /**
  * Clamp FAB position so it never goes off-screen.
  */
 function clampPos(x: number, y: number): DragPos {
-  const maxX = window.innerWidth - FAB_SIZE - FAB_MARGIN;
-  const maxY = window.innerHeight - FAB_SIZE - FAB_MARGIN;
+  const margin = getMargin();
+  const maxX = window.innerWidth - FAB_SIZE - margin;
+  const maxY = window.innerHeight - FAB_SIZE - margin;
   return {
-    x: Math.max(FAB_MARGIN, Math.min(x, maxX)),
-    y: Math.max(FAB_MARGIN, Math.min(y, maxY)),
+    x: Math.max(margin, Math.min(x, maxX)),
+    y: Math.max(margin, Math.min(y, maxY)),
   };
 }
 
 /**
- * Initial position: vertically centered, horizontally at right edge.
+ * Initial position: bottom right edge.
  */
 function getInitialPos(): DragPos {
+  const margin = getMargin();
   return {
-    x: window.innerWidth - FAB_SIZE - FAB_MARGIN,
-    y: Math.round(window.innerHeight / 2) - Math.round(FAB_SIZE / 2),
+    x: window.innerWidth - FAB_SIZE - margin,
+    y: window.innerHeight - FAB_SIZE - margin,
   };
 }
 
@@ -240,14 +245,6 @@ export const AIAssistant: React.FC = () => {
           <motion.div
             key="chat-panel"
             className={styles.chatPanel}
-            style={{
-              position: 'fixed',
-              bottom: '90px',
-              right: '24px',
-              width: 'min(380px, calc(100vw - 48px))',
-              height: 'min(500px, calc(100dvh - 120px))',
-              willChange: 'auto',
-            }}
             initial={{ opacity: 0, scale: 0.94, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 12 }}

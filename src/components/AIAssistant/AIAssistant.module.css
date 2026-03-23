@@ -58,6 +58,14 @@
 
 /* ── Chat Panel ───────────────────────────────────────────────────────────── */
 .chatPanel {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: calc(100vw - 48px);
+  max-width: 380px;
+  height: calc(100dvh - 120px);
+  max-height: 500px;
+  will-change: auto;
   background: var(--surface-2);
   border: 1px solid var(--border-hover);
   border-radius: var(--r-lg);
@@ -253,4 +261,35 @@
   width: 14px;
   height: 14px;
   pointer-events: none;
+}
+
+/* ── Desktop Enhancements ─────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .chatPanel {
+    bottom: 32px;
+    right: 32px;
+    max-width: 420px;
+    max-height: 650px;
+  }
+  
+  .chatTitle {
+    font-size: 11px;
+  }
+  
+  .messageBubble {
+    font-size: 13.5px;
+  }
+  
+  .chatInput {
+    font-size: 13.5px;
+    padding: 12px 14px;
+  }
+  
+  .chatBody::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .chatBody::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+  }
 }
