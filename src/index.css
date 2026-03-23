@@ -64,6 +64,7 @@ body{
 /* ── AMBIENT BACKGROUND ── */
 .bg-canvas{
   position:fixed;top:-20vh;left:-20vw;right:-20vw;bottom:-20vh;z-index:0;pointer-events:none;
+  contain:strict;
   background:
     radial-gradient(ellipse 80% 60% at 20% 0%, rgba(45,142,255,0.07) 0%, transparent 55%),
     radial-gradient(ellipse 60% 50% at 80% 90%, rgba(0,212,180,0.05) 0%, transparent 55%),
@@ -72,6 +73,7 @@ body{
 }
 .bg-grid{
   position:fixed;top:-20vh;left:-20vw;right:-20vw;bottom:-20vh;z-index:0;pointer-events:none;opacity:0.25;
+  contain:strict;
   background-image:
     linear-gradient(rgba(45,142,255,0.04) 1px,transparent 1px),
     linear-gradient(90deg,rgba(45,142,255,0.04) 1px,transparent 1px);

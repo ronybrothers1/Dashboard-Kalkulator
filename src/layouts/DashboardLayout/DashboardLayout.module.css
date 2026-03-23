@@ -207,10 +207,6 @@
   inset: 0;
   z-index: var(--z-drawer);
   background: rgba(9,15,30,0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  isolation: isolate;
-  transform: translateZ(0);
 }
 
 .drawer {
@@ -219,7 +215,9 @@
   right: 0;
   bottom: 0;
   width: min(260px,82vw);
-  background: var(--surface-2);
+  background: rgba(15,23,36,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-left: 1px solid var(--border);
   padding: 60px 16px 32px;
   transform: translateX(100%);

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from '@google/genai';
 import { Icon } from '../Icon/Icon';
 import styles from './AIAssistant.module.css';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useDragControls } from 'motion/react';
 import Markdown from 'react-markdown';
 
 let aiClient: GoogleGenAI | null = null;
@@ -28,6 +28,7 @@ export const AIAssistant: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const chatRef = useRef<any>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const dragControls = useDragControls();
 
   useEffect(() => {
     if (!chatRef.current) {
@@ -104,8 +105,16 @@ export const AIAssistant: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            drag
+            dragControls={dragControls}
+            dragListener={false}
+            dragMomentum={false}
           >
-            <div className={styles['chat-header']}>
+            <div 
+              className={styles['chat-header']}
+              onPointerDown={(e) => dragControls.start(e)}
+              style={{ touchAction: "none", cursor: "grab" }}
+            >
               <div className={styles['chat-title']}>
                 <Icon name="bolt" />
                 AI Core // Fast Response
