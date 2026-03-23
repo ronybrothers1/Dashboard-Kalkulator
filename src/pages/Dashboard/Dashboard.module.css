@@ -287,7 +287,6 @@
 }
 @media(max-width:1024px){
   .main-grid { grid-template-columns: 1fr; }
-  .right-col { display: none; }
   .stat-row { grid-template-columns: repeat(2,1fr); }
 }
 @media(max-width:768px){

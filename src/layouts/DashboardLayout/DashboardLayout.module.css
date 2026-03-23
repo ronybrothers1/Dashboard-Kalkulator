@@ -196,7 +196,7 @@
   flex: 1;
   padding: clamp(24px,3vw,36px) clamp(16px,3vw,32px);
   min-height: calc(100vh - 60px);
-  overflow: hidden;
+  overflow-x: hidden;
   min-width: 0;
 }
 
