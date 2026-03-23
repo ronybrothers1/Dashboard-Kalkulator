@@ -8,6 +8,7 @@
   z-index: var(--z-modal);
   pointer-events: none;
   max-width: calc(100vw - 48px);
+  contain: layout paint;
 }
 
 .toast {
