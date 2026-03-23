@@ -48,7 +48,7 @@ export const LogPanel: React.FC = () => {
         <div className={styles['panel-header-sub']}>LIVE · AES-256</div>
       </div>
       <div className={styles['log-body']} aria-live="polite" aria-label="Log sistem">
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           {logs.map((log) => (
             <motion.div
               key={log.id}
@@ -56,6 +56,7 @@ export const LogPanel: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.28 }}
               className={`${styles['log-line']} ${styles[log.cls]}`}
+              style={{ willChange: 'auto' }}
             >
               <span className={styles['log-ts']}>{log.ts}</span>
               <span className={styles['log-msg']}>{log.txt}</span>

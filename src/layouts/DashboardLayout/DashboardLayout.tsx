@@ -24,9 +24,6 @@ export const DashboardLayout: React.FC = () => {
 
   return (
     <>
-      <div className="bg-canvas" aria-hidden="true" />
-      <div className="bg-grid" aria-hidden="true" />
-
       {/* TOPBAR */}
       <header className={styles.topbar}>
         <div className={styles['topbar-brand']}>

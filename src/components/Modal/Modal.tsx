@@ -67,7 +67,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, label, chi
   }, [isOpen, onClose]);
 
   return createPortal(
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {isOpen && (
         <motion.div
           key="modal-overlay"
@@ -89,6 +89,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, label, chi
             animate={{ y: 0, scale: 1 }}
             exit={{ y: 20, scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            style={{ willChange: 'auto' }}
           >
             <button className={styles['modal-close']} onClick={onClose} aria-label="Tutup">×</button>
             

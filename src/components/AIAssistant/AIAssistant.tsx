@@ -156,23 +156,6 @@ export const AIAssistant: React.FC = () => {
     setIsOpen(true);
   }, []);
 
-  // ── Chat panel position (anchored near FAB, clamped to screen) ─────────────
-  const chatPanelStyle = React.useMemo(() => {
-    const PANEL_W = Math.min(380, window.innerWidth - 48);
-    const PANEL_H = Math.min(500, window.innerHeight - 48);
-    const GAP = 12;
-
-    let left = fabPos.x - PANEL_W + FAB_SIZE;
-    let top = fabPos.y - PANEL_H - GAP;
-
-    // If would go above viewport, open below
-    if (top < 24) top = fabPos.y + FAB_SIZE + GAP;
-    // Clamp horizontal
-    left = Math.max(24, Math.min(left, window.innerWidth - PANEL_W - 24));
-
-    return { left, top, width: PANEL_W, maxHeight: PANEL_H };
-  }, [fabPos, isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
-
   // ── Send message ──────────────────────────────────────────────────────────
   const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -252,19 +235,18 @@ export const AIAssistant: React.FC = () => {
       </button>
 
       {/* ── Chat Panel ── */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             key="chat-panel"
             className={styles.chatPanel}
             style={{
               position: 'fixed',
-              left: chatPanelStyle.left,
-              top: chatPanelStyle.top,
-              width: chatPanelStyle.width,
-              maxHeight: chatPanelStyle.maxHeight,
-              bottom: 'auto',
-              right: 'auto',
+              bottom: '90px',
+              right: '24px',
+              width: 'min(380px, calc(100vw - 48px))',
+              height: 'min(500px, calc(100dvh - 120px))',
+              willChange: 'auto',
             }}
             initial={{ opacity: 0, scale: 0.94, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

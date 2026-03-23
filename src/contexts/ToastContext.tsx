@@ -42,7 +42,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       {children}
       {createPortal(
         <div className={styles['toast-container']} aria-live="polite" aria-atomic="false">
-          <AnimatePresence>
+          <AnimatePresence initial={false}>
             {toasts.map((toast) => (
               <motion.div
                 key={toast.id}
@@ -51,6 +51,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
                 exit={{ opacity: 0, x: '120%' }}
                 transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 className={`${styles.toast} ${styles[toast.type]}`}
+                style={{ willChange: 'auto' }}
               >
                 <span className={styles['toast-dot']} />
                 <span>{toast.msg}</span>

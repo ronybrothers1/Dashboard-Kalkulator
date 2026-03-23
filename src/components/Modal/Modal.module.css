@@ -3,8 +3,6 @@
   inset: 0;
   z-index: var(--z-modal);
   background: rgba(9,15,30,0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,6 +18,8 @@
   box-shadow: var(--sh-lg), 0 0 60px rgba(45,142,255,0.12);
   overflow: hidden;
   position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .modal-close {
